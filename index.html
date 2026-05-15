@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farewell — Until We Meet Again</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+:root {
+  --cream:#fdf6ec; --parchment:#f5e9d4; --warm:#e8d5b7;
+  --gold:#c9a96e;  --gold-light:#e8c98a;
+  --rose:#c17b7b;  --rose-light:#d9a0a0;
+  --ink:#3a2e28;   --ink-soft:#6b5a50;
+  --shadow:rgba(58,46,40,0.13);
+}
+html { scroll-behavior:smooth; }
+body { 
+  background:var(--cream); 
+  color:var(--ink); 
+  font-family:'Jost',sans-serif; 
+  font-weight:300; 
+  min-height:100vh; 
+  overflow-x:hidden;
+  position:relative;
+  max-width:100vw;
+}
+
+/* BG */
+.bg-layer {
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,169,110,.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%, rgba(193,123,123,.08) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #fdf6ec 0%, #f5e9d4 100%);
+}
+
+/* STICKERS - Attached to card corners */
+.stickers { position:absolute; inset:0; z-index:100; pointer-events:none; overflow:hidden; }
+.sticker {
+  position:absolute;
+  width:90px;
+  height:90px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  opacity:0;
+  animation:fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+  to { opacity:0.95; }
+}
+
+/* Sticker positions - attached to corners of content boxes */
+.sticker:nth-child(1) { top:0px; left:50%; margin-left:-310px; width:110px; height:110px; transform:rotate(-110deg); animation-delay:0.2s; }
+.sticker:nth-child(2) { top:330px; left:50%; margin-left:-310px; width:105px; height:105px; transform:rotate(-8deg); animation-delay:0.4s; }
+.sticker:nth-child(3) { top:310px; right:50%; margin-right:-310px; width:115px; height:115px; transform:rotate(20deg); animation-delay:0.6s; }
+.sticker:nth-child(4) { top:720px; right:50%; margin-right:-390px; width:113px; height:113px; transform:rotate(30deg); animation-delay:0.8s; }
+.sticker:nth-child(5) { top:950px; left:50%; margin-left:-290px; width:110px; height:110px; transform:rotate(-20deg); animation-delay:1s; }
+.sticker:nth-child(6) { top:1100px; right:50%; margin-right:-310px; width:117px; height:117px; transform:rotate(15deg); animation-delay:1.2s; }
+.sticker:nth-child(7) { top:1320px; right:50%; margin-right:-310px; width:112px; height:112px; transform:rotate(18deg); animation-delay:1.4s; }
+.sticker:nth-child(8) { top:1650px; right:50%; margin-right:-310px; width:112px; height:112px; transform:rotate(18deg); animation-delay:1.6s; }
+.sticker:nth-child(9) { top:1890px; right:50%; margin-right:-310px; width:110px; height:110px; transform:rotate(0deg); animation-delay:1.8s; }
+.sticker:nth-child(10) { top:2140px; right:50%; margin-right:-310px; width:115px; height:115px; transform:rotate(-22deg); animation-delay:2s; }
+
+/* LAYOUT */
+.container { 
+  position:relative; 
+  z-index:2; 
+  max-width:600px; 
+  margin:0 auto; 
+  padding:60px 20px 80px;
+}
+
+/* HEADER */
+header { 
+  text-align:center; 
+  margin-bottom:48px; 
+  animation:rise 1.2s ease both;
+  background-image:url('Rennyboo/header-bg.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  padding:60px 20px;
+  border-radius:16px;
+  position:relative;
+}
+header::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(253,246,236,0.75);
+  border-radius:16px;
+  z-index:0;
+}
+header > * { position:relative; z-index:1; }
+@keyframes rise { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+.eyebrow { 
+  font-weight:200; 
+  font-size:10px; 
+  letter-spacing:.32em; 
+  text-transform:uppercase; 
+  color:var(--gold); 
+  margin-bottom:16px;
+}
+h1 { 
+  font-family:'Cormorant Garamond',serif; 
+  font-weight:300; 
+  font-size:clamp(2rem,8vw,3.5rem); 
+  line-height:1.1; 
+  color:var(--ink); 
+  margin-bottom:14px;
+}
+h1 em { font-style:italic; color:var(--rose); }
+.subtitle { 
+  font-size:12px; 
+  letter-spacing:.16em; 
+  color:var(--ink-soft); 
+  opacity:.7;
+}
+.divider { 
+  display:flex; 
+  align-items:center; 
+  gap:12px; 
+  margin:24px auto; 
+  max-width:150px;
+}
+.divider::before,.divider::after { 
+  content:''; 
+  flex:1; 
+  height:1px; 
+  background:var(--gold); 
+  opacity:.4;
+}
+.divider-gem { 
+  width:5px; 
+  height:5px; 
+  background:var(--gold); 
+  opacity:.7; 
+  transform:rotate(45deg);
+}
+
+/* LETTER */
+.letter-card {
+  background:#fff; 
+  border:1px solid rgba(201,169,110,.2); 
+  border-radius:16px;
+  padding:36px 28px; 
+  box-shadow:0 8px 40px var(--shadow);
+  margin-bottom:28px; 
+  animation:rise 1.2s .3s ease both;
+  position:relative; 
+  overflow:hidden;
+}
+.letter-card::before {
+  content:''; 
+  position:absolute; 
+  top:0; 
+  left:0; 
+  right:0; 
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--rose),var(--gold),transparent); 
+  opacity:.5;
+}
+.letter-date { 
+  font-size:10px; 
+  letter-spacing:.2em; 
+  color:var(--ink-soft); 
+  opacity:.55; 
+  margin-bottom:24px; 
+  text-transform:uppercase;
+}
+.letter-body { 
+  font-family:'Cormorant Garamond',serif; 
+  font-size:clamp(1rem,4vw,1.15rem); 
+  line-height:1.85; 
+  color:var(--ink);
+}
+.letter-body p { margin-bottom:18px; }
+.letter-body p:last-child { margin-bottom:0; }
+.letter-sign { 
+  margin-top:28px; 
+  font-family:'Cormorant Garamond',serif; 
+  font-size:1.3rem; 
+  font-style:italic; 
+  color:var(--rose);
+}
+
+/* MUSIC CARD */
+.music-card {
+  background:var(--ink); 
+  border-radius:16px; 
+  padding:24px 20px;
+  margin-bottom:20px; 
+  box-shadow:0 12px 48px rgba(58,46,40,.2);
+  animation:rise 1.2s .5s ease both;
+}
+.section-title { 
+  font-family:'Cormorant Garamond',serif; 
+  font-size:0.95rem; 
+  font-weight:400; 
+  letter-spacing:.16em; 
+  text-transform:uppercase; 
+  color:var(--gold-light); 
+  margin-bottom:14px; 
+  display:flex; 
+  align-items:center; 
+  gap:10px;
+}
+.section-title::after { 
+  content:''; 
+  flex:1; 
+  height:1px; 
+  background:rgba(201,169,110,.18);
+}
+.now-bar {
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between;
+  gap:20px; 
+  flex-wrap:nowrap;
+  background:rgba(255,255,255,.04); 
+  border-radius:8px;
+  padding:16px 20px;
+}
+.now-text { 
+  font-size:14px; 
+  color:var(--gold-light);
+  letter-spacing:.08em; 
+  flex:1; 
+  min-width:100px;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+}
+.now-text span { 
+  display:block;
+  font-size:11px;
+  color:rgba(255,255,255,.4);
+  margin-top:4px;
+  font-family:'Jost',sans-serif;
+  letter-spacing:.05em;
+}
+
+/* Vinyl Record on Right */
+.yt-controls { 
+  display:flex; 
+  align-items:center; 
+  gap:12px;
+}
+.vinyl-disc {
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  cursor:pointer;
+  transition:transform .2s;
+}
+.vinyl-disc:hover {
+  transform:scale(1.05);
+}
+.vinyl-disc::before {
+  content:'';
+  position:absolute;
+  inset:8px;
+  border:2px solid rgba(255,255,255,.2);
+  border-radius:50%;
+  pointer-events:none;
+}
+.vinyl-disc::after {
+  content:'';
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:rgba(0,0,0,.3);
+  border-radius:50%;
+  pointer-events:none;
+}
+.vinyl-disc.spinning {
+  animation:spin 3s linear infinite;
+}
+
+.yt-btn-ctrl {
+  background:none; 
+  border:none; 
+  cursor:pointer;
+  font-size:0;
+  line-height:1;
+  transition:all .2s; 
+  padding:0;
+  position:relative;
+  z-index:1;
+  pointer-events:none;
+  width:0;
+  height:0;
+}
+.yt-btn-ctrl.play {
+  border-left:10px solid rgba(255,255,255,.9);
+  border-top:7px solid transparent;
+  border-bottom:7px solid transparent;
+  margin-left:3px;
+}
+.yt-btn-ctrl.pause {
+  width:12px;
+  height:14px;
+  border-left:4px solid rgba(255,255,255,.9);
+  border-right:4px solid rgba(255,255,255,.9);
+}
+.yt-vol {
+  -webkit-appearance:none; 
+  appearance:none;
+  width:60px; 
+  height:2px; 
+  background:rgba(255,255,255,.14); 
+  border-radius:1px; 
+  cursor:pointer;
+}
+.yt-vol::-webkit-slider-thumb { 
+  -webkit-appearance:none; 
+  width:8px; 
+  height:8px; 
+  border-radius:50%; 
+  background:rgba(255,255,255,.4); 
+  cursor:pointer;
+}
+
+/* VOICE CARD - Vinyl Record Style */
+.voice-card {
+  background:#fff; 
+  border:1px solid rgba(201,169,110,.2); 
+  border-radius:16px;
+  padding:30px 36px; 
+  box-shadow:0 8px 40px var(--shadow);
+  animation:rise 1.2s .7s ease both;
+}
+.voice-card .section-title { 
+  color:var(--ink-soft);
+}
+.voice-card .section-title::after { 
+  background:var(--warm);
+}
+
+/* Vinyl Record Player */
+.clips-list { display:flex; flex-direction:column; gap:20px; }
+.clip-item { 
+  background:linear-gradient(135deg, var(--parchment) 0%, var(--warm) 100%);
+  border-radius:8px;
+  padding:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(58,46,40,.15);
+}
+
+/* Spotify Equalizer Bars */
+.equalizer {
+  display:flex;
+  align-items:flex-end;
+  gap:4px;
+  height:60px;
+}
+.equalizer span {
+  width:4px;
+  background:var(--rose);
+  border-radius:2px;
+  animation:equalize 1.2s ease-in-out infinite;
+}
+.equalizer span:nth-child(1) { height:20px; animation-delay:0s; }
+.equalizer span:nth-child(2) { height:35px; animation-delay:0.15s; }
+.equalizer span:nth-child(3) { height:50px; animation-delay:0.3s; }
+.equalizer span:nth-child(4) { height:30px; animation-delay:0.45s; }
+.equalizer span:nth-child(5) { height:45px; animation-delay:0.6s; }
+@keyframes equalize {
+  0%, 100% { transform:scaleY(1); }
+  50% { transform:scaleY(1.5); }
+}
+
+/* Vinyl Album Cover (Square) - Centered */
+.clip-play-btn {
+  width:120px;
+  height:120px;
+  flex-shrink:0;
+  background-image:url('Rennyboo/vm background.JPG');
+  background-size:cover;
+  background-position:center;
+  border:none;
+  cursor:pointer;
+  font-size:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all .3s;
+  position:relative;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+}
+.clip-play-btn::before {
+  content:'';
+  position:absolute;
+  inset:10px;
+  border:2px solid rgba(255,255,255,.3);
+  border-radius:50%;
+}
+.clip-play-btn::after {
+  content:'';
+  position:absolute;
+  width:30px;
+  height:30px;
+  background:rgba(255,255,255,.2);
+  border-radius:50%;
+}
+.clip-play-btn .play-icon {
+  width:0;
+  height:0;
+  border-left:20px solid rgba(255,255,255,.95);
+  border-top:14px solid transparent;
+  border-bottom:14px solid transparent;
+  margin-left:5px;
+  z-index:1;
+  position:relative;
+}
+.clip-play-btn .pause-icon {
+  width:24px;
+  height:28px;
+  border-left:8px solid rgba(255,255,255,.95);
+  border-right:8px solid rgba(255,255,255,.95);
+  z-index:1;
+  position:relative;
+  display:none;
+}
+.clip-play-btn:hover {
+  transform:scale(1.05);
+  box-shadow:0 6px 16px rgba(0,0,0,.4);
+}
+.clip-play-btn:active {
+  animation:spin 2s linear infinite;
+}
+@keyframes spin {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
+
+/* Hide the text */
+.clip-meta { 
+  display:none;
+}
+
+/* START OVERLAY */
+.start-overlay { 
+  position:fixed; 
+  inset:0; 
+  z-index:10000; 
+  background:rgba(58,46,40,.85); 
+  backdrop-filter:blur(8px); 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  transition:opacity .5s;
+}
+.start-overlay.hide { opacity:0; pointer-events:none; }
+.start-play-btn { 
+  width:70px; 
+  height:70px; 
+  border-radius:50%; 
+  background:var(--gold); 
+  border:none; 
+  font-size:0;
+  cursor:pointer; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  transition:all .3s; 
+  box-shadow:0 8px 32px rgba(201,169,110,.4);
+  position:relative;
+}
+.start-play-btn::before {
+  content:'';
+  width:0;
+  height:0;
+  border-left:20px solid var(--ink);
+  border-top:14px solid transparent;
+  border-bottom:14px solid transparent;
+  margin-left:5px;
+}
+.start-play-btn:hover { 
+  background:var(--gold-light); 
+  transform:scale(1.1); 
+  box-shadow:0 12px 48px rgba(201,169,110,.6);
+}
+
+/* FOOTER */
+footer { text-align:center; margin-top:60px; margin-bottom:120px; animation:rise 1.2s .9s ease both; position:relative; }
+.farewell-quote { 
+  font-family:'Cormorant Garamond',serif; 
+  font-size:clamp(1rem,4vw,1.3rem); 
+  font-style:italic; 
+  color:var(--ink-soft); 
+  opacity:.7; 
+  max-width:400px; 
+  margin:0 auto 12px; 
+  line-height:1.6;
+}
+.footer-small { 
+  font-size:9px; 
+  letter-spacing:.26em; 
+  text-transform:uppercase; 
+  color:var(--gold); 
+  opacity:.38;
+  margin-bottom:40px;
+}
+
+/* Carousel */
+.footer-carousel {
+  width:100%;
+  max-width:600px;
+  margin:0 auto;
+}
+.carousel-container {
+  position:relative;
+  width:100%;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 8px 32px var(--shadow);
+  background:var(--parchment);
+}
+.carousel-slides {
+  position:relative;
+  width:100%;
+  min-height:300px;
+  max-height:600px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.carousel-slide {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  max-width:100%;
+  max-height:600px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+.carousel-slide.active {
+  opacity:1;
+}
+.carousel-btn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,0.9);
+  border:none;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  font-size:24px;
+  color:var(--ink);
+  cursor:pointer;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.3s;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+.carousel-btn:hover {
+  background:rgba(255,255,255,1);
+  transform:translateY(-50%) scale(1.1);
+}
+.carousel-btn.prev {
+  left:10px;
+}
+.carousel-btn.next {
+  right:10px;
+}
+.carousel-dots {
+  position:absolute;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  z-index:10;
+}
+.carousel-dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.5);
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.carousel-dot.active {
+  background:rgba(255,255,255,1);
+  width:24px;
+  border-radius:4px;
+}
+
+/* Mobile optimizations */
+@media(max-width:480px){
+  .container{ padding:40px 16px 60px; max-width:100%; }
+  .letter-card{ padding:28px 20px; }
+  .music-card,.voice-card{ padding:20px 16px; }
+  .clip-play-btn { width:100px !important; height:100px !important; font-size:28px !important; }
+  .clip-meta { padding:16px 18px !important; }
+  .clip-meta-name { font-size:14px !important; }
+  .sticker { width:95px !important; height:90px !important; }
+  .sticker:nth-child(1) { left:5px !important; margin-left:0 !important; }
+  .sticker:nth-child(2) { left:5px !important; margin-left:0 !important; }
+  .sticker:nth-child(3) { right:5px !important; margin-right:0 !important; }
+  .sticker:nth-child(4) { right:-25px !important; margin-right:0 !important; }
+  .sticker:nth-child(5) { left:5px !important; margin-left:0 !important; }
+  .sticker:nth-child(6) { right:5px !important; margin-right:0 !important; }
+  .sticker:nth-child(7) { right:-20px !important; margin-right:0 !important; }
+  .sticker:nth-child(8) { right:0px !important; margin-right:0 !important; }
+  .sticker:nth-child(9) { right:7px !important; margin-right:0 !important; }
+  .sticker:nth-child(10) { right:5px !important; margin-right:0 !important; }
+  h1 { font-size:2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+
+<!-- Stickers -->
+<div class="stickers">
+  <div class="sticker" style="background-image:url('Rennyboo/sticker1.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker2.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker3.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker4.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker5.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker6.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker7.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker8.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker9.png')"></div>
+  <div class="sticker" style="background-image:url('Rennyboo/sticker10.png')"></div>
+</div>
+
+<!-- Start Overlay -->
+<div class="start-overlay" id="startOverlay">
+  <button class="start-play-btn"></button>
+</div>
+
+<!-- Hidden Audio Player -->
+<audio id="bgmAudio" loop preload="auto">
+  <source src="IV Of Spades - Kabisado (Lyrics).mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="eyebrow">A Message From the Bisakolonely</div>
+    <h1>Until We Meet<br><em>Again</em></h1>
+    <div class="subtitle">A farewell, with love and blessing</div>
+    <div class="divider"><div class="divider-gem"></div></div>
+  </header>
+
+  <!-- LETTER -->
+  <div class="letter-card">
+    <div class="letter-date" id="letterDate"></div>
+    <div class="letter-body">
+      <p><strong>Dear Ren,</strong></p>
+      <p>Hiii Renn! I hope this letter finds you well, and I hope nag-kaon na ka og ni-inom og tubig. Ayaw sigeg OMAD (one meal a day) because you can't buy and sell immortality, bruv! HWHASHHAAH. I hope and pray that once you get there sa BKD, you'll finally have fun! Hehehe. Since you're surrounded by your friends na, yipeeeeeeeeeeeeee! Also, be careful ahhh. BKD is built diff, and so are you, SAHAHAH.</p>
+      <p>Ren, if you need someone to talk to, I am here, and so are your friends. I pray that God will give you the strength to face the upcoming hardships. Please always remember how deeply cared for you are, and no matter how heavy things get, you don't have to carry them alone. You bring so much light into the lives of the people around you just by being yourself, and I genuinely want nothing but the absolute best for you.</p>
+      <p>Now I know what it feels like to not follow a rule... the "don't talk to strangers online" one and because ever since I met you, I've had a lot of fun, HSAHAHA. I still remember being so nervous to meet you because I thought, "Siguro poser ni, too pretty naman to do cafe," AHSHAHAH. That was my first thought about our first meet! After that, I slowly got comfortable since, idk, same humor? JSAAHAHAH. My night owl buddy, my partner in crime at night, my goat Kagura user HASHAHAH, and my one and only vampire.</p>
+      <p>I hope you don't forget about me since we wont be seeing each other for a long time na :<. It saddens me that we only hung out for a short while, but that short while was one of the best things that happened to me this year. Anyways, enough with the yapping session, rag kahilakon ko ayy ooooayyytchhh.</p>
+      <p><em>"Imagine may mag-good morning..."</em></p>
+      <p>Ouh, naa akong parcel, shibal! ASHAHAHAH. "Sir, imong parcel naa ko gawas," AHSHAHAHAH. Anyways, take care, renybooooooo! Never ever let others' perspectives change the real youuuu.</p>
+    </div>
+    <div class="letter-sign">— With all my love</div>
+  </div>
+
+  <!-- MUSIC -->
+  <div class="music-card">
+    <div class="section-title">♫ &nbsp;Background Music</div>
+    <div class="now-bar">
+      <div class="now-text">
+        IV Of Spades - Kabisado
+        <span>Background Music</span>
+      </div>
+      <div class="yt-controls">
+        <input class="yt-vol" id="bgmVol" type="range" min="0" max="100" value="50" title="Volume">
+        <div class="vinyl-disc" id="vinylDisc">
+          <button class="yt-btn-ctrl play" id="btnPP" title="Play / Pause"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOICE MESSAGES -->
+  <div class="voice-card">
+    <div class="section-title">🎙 &nbsp;Voice Message</div>
+    <div class="clips-list" id="clipsList"></div>
+  </div>
+
+  <footer>
+    <div class="farewell-quote">
+      "The pain of parting is nothing to the joy of meeting again."
+    </div>
+    <div class="footer-small">— Dan Francis</div>
+    <div class="footer-carousel">
+      <div class="carousel-container">
+        <div class="carousel-slides" id="carouselSlides">
+          <img src="Rennyboo/header-bg.JPG" alt="Memory 1" class="carousel-slide active" />
+          <img src="Rennyboo/c1.jpg" alt="Memory 2" class="carousel-slide" />
+          <img src="Rennyboo/c2.jpg" alt="Memory 3" class="carousel-slide" />
+          <img src="Rennyboo/c3.jpg" alt="Memory 4" class="carousel-slide" />
+          <img src="Rennyboo/c4.JPG" alt="Memory 5" class="carousel-slide" />
+          <img src="Rennyboo/c5.JPG" alt="Memory 6" class="carousel-slide" />
+          <img src="Rennyboo/c6.jpg" alt="Memory 7" class="carousel-slide" />
+          <img src="Rennyboo/c7.JPG" alt="Memory 8" class="carousel-slide" />
+        </div>
+        <button class="carousel-btn prev" id="prevBtn">‹</button>
+        <button class="carousel-btn next" id="nextBtn">›</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const VOICE_MESSAGES = [
+  { name: "Voice Message", dataUrl: "voice message.wav" },
+];
+
+// Date
+document.getElementById('letterDate').textContent =
+  new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+// HTML5 AUDIO BGM
+const bgmAudio = document.getElementById('bgmAudio');
+let bgmIsPlaying = false;
+bgmAudio.volume = 0.5;
+
+// Start overlay
+const startOverlay = document.getElementById('startOverlay');
+startOverlay.addEventListener('click', function(){
+  this.classList.add('hide');
+  bgmAudio.play().then(()=>{
+    bgmIsPlaying = true;
+    const btnPP = document.getElementById('btnPP');
+    btnPP.classList.remove('play');
+    btnPP.classList.add('pause');
+    document.getElementById('vinylDisc').classList.add('spinning');
+  }).catch(err=>{
+    console.error('Error playing audio:', err);
+  });
+});
+
+// Play/Pause - Click on vinyl disc
+document.getElementById('vinylDisc').addEventListener('click',()=>{
+  const vinylDisc = document.getElementById('vinylDisc');
+  const btnPP = document.getElementById('btnPP');
+  if(bgmIsPlaying){
+    bgmAudio.pause();
+    btnPP.classList.remove('pause');
+    btnPP.classList.add('play');
+    vinylDisc.classList.remove('spinning');
+    bgmIsPlaying = false;
+  } else {
+    bgmAudio.play();
+    btnPP.classList.remove('play');
+    btnPP.classList.add('pause');
+    vinylDisc.classList.add('spinning');
+    bgmIsPlaying = true;
+  }
+});
+
+// Volume
+document.getElementById('bgmVol').addEventListener('input', (e)=>{
+  bgmAudio.volume = e.target.value / 100;
+});
+
+// Voice Messages
+let allClips = VOICE_MESSAGES.map(v=>({...v, saved:true}));
+
+function renderClips(){
+  const list = document.getElementById('clipsList');
+  list.innerHTML = '';
+  allClips.forEach((c,i)=>{
+    const div = document.createElement('div');
+    div.className = 'clip-item';
+    div.innerHTML = `
+      <div class="equalizer">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <button class="clip-play-btn">
+        <div class="play-icon"></div>
+        <div class="pause-icon"></div>
+      </button>
+      <div class="equalizer">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="clip-meta">
+        <div class="clip-meta-name">${esc(c.name)}</div>
+      </div>`;
+    let audio = null;
+    const pb = div.querySelector('.clip-play-btn');
+    const playIcon = div.querySelector('.play-icon');
+    const pauseIcon = div.querySelector('.pause-icon');
+    let originalBgmVolume = bgmAudio.volume;
+    pb.addEventListener('click',()=>{
+      if(!audio) audio = new Audio(c.dataUrl);
+      if(audio.paused){ 
+        originalBgmVolume = bgmAudio.volume;
+        bgmAudio.volume = originalBgmVolume * 0.3;
+        audio.onended = ()=>{
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+          bgmAudio.volume = originalBgmVolume;
+        };
+        audio.play(); 
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+      }
+      else { 
+        audio.pause(); 
+        audio.currentTime=0; 
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        bgmAudio.volume = originalBgmVolume;
+      }
+    });
+    list.appendChild(div);
+  });
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+renderClips();
+
+// Carousel functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
+const dotsContainer = document.getElementById('carouselDots');
+
+// Create dots
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+}
+
+const dots = document.querySelectorAll('.carousel-dot');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = (n + totalSlides) % totalSlides;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  goToSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  goToSlide(currentSlide - 1);
+}
+
+document.getElementById('nextBtn').addEventListener('click', nextSlide);
+document.getElementById('prevBtn').addEventListener('click', prevSlide);
+</script>
+</body>
+</html>
